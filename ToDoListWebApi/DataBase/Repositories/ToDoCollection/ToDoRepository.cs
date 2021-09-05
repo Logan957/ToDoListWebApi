@@ -35,7 +35,7 @@ namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
             return toDo;
         }
 
-        public async void Remove(string id)
+        public async Task Remove(string id)
         {
             await _toDo.DeleteOneAsync(toDo => toDo.Id == id).ConfigureAwait(false);
         }

@@ -44,7 +44,7 @@ namespace ToDoListWebApi
                 Configuration.GetSection(nameof(ToDoDatabaseSettings)));
 
             services.AddSingleton<IToDoDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<IToDoDatabaseSettings>>().Value);
+                sp.GetRequiredService<IOptions<ToDoDatabaseSettings>>().Value);
 
             services.AddScoped(typeof(ToDoService));
 

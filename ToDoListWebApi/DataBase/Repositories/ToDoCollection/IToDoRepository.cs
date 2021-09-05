@@ -31,6 +31,6 @@ namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
         /// Remove ToDo by id
         /// </summary>
         /// <param name="id">Id ToDo</param>
-        void Remove(string id);
+        Task Remove(string id);
     }
 }
