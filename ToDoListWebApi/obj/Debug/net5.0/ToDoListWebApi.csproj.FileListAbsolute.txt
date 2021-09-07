@@ -49,3 +49,4 @@ C:\Users\roman\source\repos\ToDoListWebApi\ToDoListWebApi\bin\Debug\net5.0\runti
 C:\Users\roman\source\repos\ToDoListWebApi\ToDoListWebApi\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\roman\source\repos\ToDoListWebApi\ToDoListWebApi\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll
 C:\Users\roman\source\repos\ToDoListWebApi\ToDoListWebApi\bin\Debug\net5.0\MongoDB.Driver.dll
+C:\Users\roman\source\repos\ToDoListWebApi\ToDoListWebApi\bin\Debug\net5.0\Newtonsoft.Json.dll

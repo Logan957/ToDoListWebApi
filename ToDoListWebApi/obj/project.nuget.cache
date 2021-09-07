@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "E/4Rpu6wl9H1viPCvwahXU0440lRlN0BGDief4Tgdydph6QB6uBP6YrytwzMMEb20/wN9fWRjLCZyOggXxr/Ww==",
+  "dgSpecHash": "3hXFmbO9qlq3/EDALMkb0+KvFpuDAxAGqcLaZvb37i8EfXgoh1c77J5duvus0W6AlsNRpPZLYZUDREhJ+9RTLw==",
   "success": true,
   "projectFilePath": "C:\\Users\\roman\\source\\repos\\ToDoListWebApi\\ToDoListWebApi\\ToDoListWebApi.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,7 @@
     "C:\\Users\\roman\\.nuget\\packages\\mongodb.driver\\2.13.1\\mongodb.driver.2.13.1.nupkg.sha512",
     "C:\\Users\\roman\\.nuget\\packages\\mongodb.driver.core\\2.13.1\\mongodb.driver.core.2.13.1.nupkg.sha512",
     "C:\\Users\\roman\\.nuget\\packages\\mongodb.libmongocrypt\\1.2.2\\mongodb.libmongocrypt.1.2.2.nupkg.sha512",
+    "C:\\Users\\roman\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\roman\\.nuget\\packages\\npgsql\\5.0.7\\npgsql.5.0.7.nupkg.sha512",
     "C:\\Users\\roman\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.7\\npgsql.entityframeworkcore.postgresql.5.0.7.nupkg.sha512",
     "C:\\Users\\roman\\.nuget\\packages\\sharpcompress\\0.23.0\\sharpcompress.0.23.0.nupkg.sha512",

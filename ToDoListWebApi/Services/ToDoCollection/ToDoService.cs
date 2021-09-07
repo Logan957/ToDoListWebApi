@@ -22,7 +22,7 @@ namespace ToDoListWebApi.Services.ToDoCollection
 
         public async Task<ToDo> GetToDo(string id)
         {
-            if (Guid.TryParse(id, out Guid idGuid) && idGuid != Guid.Empty)
+            if (Guid.TryParse(id, out Guid idGuid))
             {
                 var toDo = await _toDoRepository.Get(id).ConfigureAwait(false);
 
@@ -40,9 +40,9 @@ namespace ToDoListWebApi.Services.ToDoCollection
             return await _toDoRepository.Create(toDo).ConfigureAwait(false);
         }
 
-        public async Task RemoveToDo(string id)
+        public async Task<bool> RemoveToDo(string id)
         {
-            await _toDoRepository.Remove(id).ConfigureAwait(false);
+           return await _toDoRepository.Remove(id).ConfigureAwait(false);
         }
     }
 }

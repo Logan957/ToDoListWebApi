@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace ToDoListWebApi.Models.ToDoCollection
 {
@@ -10,5 +11,10 @@ namespace ToDoListWebApi.Models.ToDoCollection
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
+
+        public ToDo()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 }
