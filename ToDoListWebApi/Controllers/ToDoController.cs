@@ -22,8 +22,6 @@ namespace ToDoListWebApi.Controllers
         [HttpGet]
         public async Task<List<ToDo>> GetToDo()
         {
-            int x = 0;
-            int v = 5 / x;
             return await _toDoService.GetAllToDo().ConfigureAwait(false);
         }
 
@@ -52,6 +50,17 @@ namespace ToDoListWebApi.Controllers
         public async Task<ActionResult<ToDo>> DeleteToDo(string id)
         {
             if (await _toDoService.RemoveToDo(id).ConfigureAwait(false))
+            {
+                return Ok();
+            }
+
+            return NotFound();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<ToDo>> UpdateToDo(ToDo todo)
+        {
+            if (await _toDoService.UpdateToDo(todo).ConfigureAwait(false) != null)
             {
                 return Ok();
             }

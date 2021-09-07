@@ -45,5 +45,17 @@ namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
             }
             return false;
         }
+
+        public async Task<ToDo> Update(ToDo toDo)
+        {
+            if (toDo != null)
+            {
+                await _toDo.ReplaceOneAsync(todo => todo.Id == toDo.Id, toDo);
+
+                return await Get(toDo.Id).ConfigureAwait(false);
+            }
+
+            return null;
+        }
     }
 }
