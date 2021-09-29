@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ToDoListWebApi.Models.ToDoCollection;
 using ToDoListWebApi.Services.ToDoCollection;
@@ -20,13 +18,13 @@ namespace ToDoListWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ToDo>> GetToDo()
+        public async Task<IReadOnlyCollection<ToDo>> GetToDo()
         {
             return await _toDoService.GetAllToDo().ConfigureAwait(false);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetToDo(string id)
+        public async Task<IActionResult> GetToDo(int id)
         {
             var toDo = await _toDoService.GetToDo(id).ConfigureAwait(false);
 
@@ -47,7 +45,7 @@ namespace ToDoListWebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ToDo>> DeleteToDo(string id)
+        public async Task<ActionResult<ToDo>> DeleteToDo(int id)
         {
             if (await _toDoService.RemoveToDo(id).ConfigureAwait(false))
             {

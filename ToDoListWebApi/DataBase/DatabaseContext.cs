@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ToDoListWebApi.Models.Comments;
+using ToDoListWebApi.Models.ToDoCollection;
 using ToDoListWebApi.Models.Users;
 
 namespace ToDoListWebApi.DataBase
@@ -12,5 +14,9 @@ namespace ToDoListWebApi.DataBase
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<ToDo> ToDos { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }

@@ -21,10 +21,6 @@ namespace ToDoListWebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
-            _db.Users.Add(new User { Login = "Tom" });
-            _db.Users.Add(new User { Login = "Alice" });
-            _db.SaveChanges();
-
             return await _db.Users.ToListAsync();
         }
     }
