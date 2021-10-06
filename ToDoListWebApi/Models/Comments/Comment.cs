@@ -1,5 +1,5 @@
-﻿using ToDoListWebApi.Models.ToDoCollection;
-using ToDoListWebApi.Models.Users;
+﻿using ToDoListWebApi.DataBase.Models.Users;
+using ToDoListWebApi.Models.ToDoCollection;
 
 namespace ToDoListWebApi.Models.Comments
 {

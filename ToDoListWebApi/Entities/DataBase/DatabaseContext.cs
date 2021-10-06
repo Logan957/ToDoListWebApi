@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ToDoListWebApi.DataBase.Models.Users;
 using ToDoListWebApi.Models.Comments;
 using ToDoListWebApi.Models.ToDoCollection;
-using ToDoListWebApi.Models.Users;
 
 namespace ToDoListWebApi.DataBase
 {

@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using ToDoListWebApi.DataBase;
 using ToDoListWebApi.DataBase.Repositories.ToDoCollection;
+using ToDoListWebApi.DataBase.Repositories.Users;
 using ToDoListWebApi.Middleware;
 using ToDoListWebApi.Services.ToDoCollection;
+using ToDoListWebApi.Services.Users;
 
 namespace ToDoListWebApi
 {
@@ -34,15 +35,14 @@ namespace ToDoListWebApi
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("Database")));
 
-            services.Configure<ToDoDatabaseSettings>(
-                Configuration.GetSection(nameof(ToDoDatabaseSettings)));
-
-            services.AddSingleton<IToDoDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<ToDoDatabaseSettings>>().Value);
-
             services.AddScoped(typeof(ToDoService));
+            services.AddScoped<UserService>();
 
             services.AddScoped(typeof(IToDoRepository), typeof(ToDoRepository));
+            services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+
+           
+            services.AddAutoMapper(typeof(UserProfile));
 
         }
 
@@ -67,6 +67,8 @@ namespace ToDoListWebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

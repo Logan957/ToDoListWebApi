@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using ToDoListWebApi.DataBase.Models.Users;
 using ToDoListWebApi.Models.Comments;
-using ToDoListWebApi.Models.Users;
 
 namespace ToDoListWebApi.Models.ToDoCollection
 {
