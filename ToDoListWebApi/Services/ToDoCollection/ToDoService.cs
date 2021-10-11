@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ToDoListWebApi.DataBase.Repositories.ToDoCollection;
 using ToDoListWebApi.Models.ToDoCollection;
+using ToDoListWebApi.Models.ToDos;
 
 namespace ToDoListWebApi.Services.ToDoCollection
 {
@@ -14,29 +15,29 @@ namespace ToDoListWebApi.Services.ToDoCollection
             _toDoRepository = toDoRepository;
         }
 
-        public async Task<IReadOnlyCollection<ToDo>> GetAllToDo()
+        public async Task<IReadOnlyCollection<ToDo>> GetToDo(ToDoFilter filter)
         {
-            return await _toDoRepository.Get().ConfigureAwait(false);
+            return await _toDoRepository.GetItem(filter).ConfigureAwait(false);
         }
 
         public async Task<ToDo> GetToDo(int id)
         {
-            return await _toDoRepository.Get(id).ConfigureAwait(false);
+            return await _toDoRepository.GetItem(id).ConfigureAwait(false);
         }
 
         public async Task<ToDo> CreateToDo(ToDo toDo)
         {
-            return await _toDoRepository.Create(toDo).ConfigureAwait(false);
+            return await _toDoRepository.CreateItem(toDo).ConfigureAwait(false);
         }
 
         public async Task<bool> RemoveToDo(int id)
         {
-            return await _toDoRepository.Remove(id).ConfigureAwait(false);
+            return await _toDoRepository.RemoveItem(id).ConfigureAwait(false);
         }
 
         public async Task<ToDo> UpdateToDo(ToDo toDo)
         {
-            return await _toDoRepository.Update(toDo).ConfigureAwait(false);
+            return await _toDoRepository.UpdateItem(toDo).ConfigureAwait(false);
         }
     }
 }

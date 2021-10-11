@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ToDoListWebApi.Models.ToDoCollection;
+using ToDoListWebApi.Models.ToDos;
 
 namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
 {
@@ -15,32 +17,32 @@ namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
         }
 
 
-        public async Task<ToDo> Create(ToDo toDo)
+        public async Task<ToDo> CreateItem(ToDo toDo)
         {
             if (toDo != null)
             {
                 await _db.ToDos.AddAsync(toDo).ConfigureAwait(false);
                 await _db.SaveChangesAsync().ConfigureAwait(false);
 
-                return await Get(toDo.Id).ConfigureAwait(false);
+                return await GetItem(toDo.Id).ConfigureAwait(false);
             }
 
             return null;
         }
 
-        public async Task<IReadOnlyCollection<ToDo>> Get()
+        public async Task<IReadOnlyCollection<ToDo>> GetItem(ToDoFilter filter)
         {
-            return await _db.ToDos.ToArrayAsync().ConfigureAwait(false);
+            return await GetToDos(filter).ToArrayAsync().ConfigureAwait(false);
         }
 
-        public async Task<ToDo> Get(int id)
+        public async Task<ToDo> GetItem(int id)
         {
             return await _db.ToDos.FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
         }
 
-        public async Task<bool> Remove(int id)
+        public async Task<bool> RemoveItem(int id)
         {
-            var toDo = await Get(id).ConfigureAwait(false);
+            var toDo = await GetItem(id).ConfigureAwait(false);
 
             if (toDo != null)
             {
@@ -53,7 +55,7 @@ namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
             return false;
         }
 
-        public async Task<ToDo> Update(ToDo toDo)
+        public async Task<ToDo> UpdateItem(ToDo toDo)
         {
             if (toDo != null)
             {
@@ -67,12 +69,32 @@ namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
 
                         await _db.SaveChangesAsync().ConfigureAwait(false);
 
-                        return await Get(toDo.Id).ConfigureAwait(false);
+                        return await GetItem(toDo.Id).ConfigureAwait(false);
                     }
                 }
             }
 
             return null;
+        }
+
+        private IQueryable<ToDo> GetToDos(ToDoFilter filter)
+        {
+            IQueryable<ToDo> toDos = _db.ToDos;
+
+            if (filter != null)
+            {
+                if (filter.UserIds != null)
+                {
+                    toDos = toDos.Where(x => filter.UserIds.Contains(x.UserId));
+                }
+
+                if (filter.IsCompleted != null)
+                {
+                    toDos = toDos.Where(x => x.IsCompleted == filter.IsCompleted);
+                }
+            }
+
+            return toDos;
         }
     }
 }

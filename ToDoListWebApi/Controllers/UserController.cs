@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using ToDoListWebApi.Auth;
 using ToDoListWebApi.Models.Users;
 using ToDoListWebApi.Services.Users;
 

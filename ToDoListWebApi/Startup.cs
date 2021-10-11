@@ -66,6 +66,7 @@ namespace ToDoListWebApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseMiddleware<JwtMiddleware>();

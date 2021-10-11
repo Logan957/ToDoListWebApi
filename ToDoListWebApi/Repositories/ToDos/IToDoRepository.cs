@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToDoListWebApi.Models.ToDoCollection;
+using ToDoListWebApi.Models.ToDos;
 
 namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
 {
@@ -10,29 +11,29 @@ namespace ToDoListWebApi.DataBase.Repositories.ToDoCollection
         /// Create ToDo
         /// </summary>
         /// <param name="toDo">ToDo</param>
-        Task<ToDo> Create(ToDo toDo);
+        Task<ToDo> CreateItem(ToDo toDo);
 
         /// <summary>
-        /// Get all ToDO
+        /// Get ToDO
         /// </summary>
-        Task<IReadOnlyCollection<ToDo>> Get();
+        Task<IReadOnlyCollection<ToDo>> GetItem(ToDoFilter filter);
 
         /// <summary>
         /// Get ToDo by id
         /// </summary>
         /// <param name="id">Id ToDo</param>
-        Task<ToDo> Get(int id);
+        Task<ToDo> GetItem(int id);
 
         /// <summary>
         /// Remove ToDo by id
         /// </summary>
         /// <param name="id">Id ToDo</param>
-        Task<bool> Remove(int id);
+        Task<bool> RemoveItem(int id);
 
         /// <summary>
         /// Update  ToDo
         /// </summary>
         /// <param name="toDo">ToDo</param>
-        Task<ToDo> Update(ToDo ToDo);
+        Task<ToDo> UpdateItem(ToDo ToDo);
     }
 }

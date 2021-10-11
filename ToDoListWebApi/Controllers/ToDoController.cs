@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToDoListWebApi.Models.ToDoCollection;
+using ToDoListWebApi.Models.ToDos;
 using ToDoListWebApi.Services.ToDoCollection;
 
 namespace ToDoListWebApi.Controllers
@@ -18,9 +19,9 @@ namespace ToDoListWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IReadOnlyCollection<ToDo>> GetToDo()
+        public async Task<IReadOnlyCollection<ToDo>> GetToDo([FromQuery]ToDoFilter filter)
         {
-            return await _toDoService.GetAllToDo().ConfigureAwait(false);
+            return await _toDoService.GetToDo(filter).ConfigureAwait(false);
         }
 
         [HttpGet("{id}")]
@@ -55,7 +56,7 @@ namespace ToDoListWebApi.Controllers
             return NotFound();
         }
 
-        [HttpPut]
+        [HttpPatch]
         public async Task<ActionResult<ToDo>> UpdateToDo(ToDo todo)
         {
             if (await _toDoService.UpdateToDo(todo).ConfigureAwait(false) != null)
