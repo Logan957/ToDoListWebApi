@@ -11,7 +11,7 @@ namespace ToDoListWebApi.Models.ToDos
 
         public bool? IsCompleted { get; set; }
 
-        public ToDoFilter SetUserIds(IEnumerable<int> userIds)
+        public ToDoFilter SetUserIds(params int[] userIds)
         {
             UserIds = userIds?.Any() == true
                 ? userIds as IReadOnlyCollection<int> ?? userIds.ToArray()

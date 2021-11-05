@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ToDoListWebApi.Auth;
+using ToDoListWebApi.DataBase.Models.Users;
 using ToDoListWebApi.Models.ToDoCollection;
 using ToDoListWebApi.Models.ToDos;
 using ToDoListWebApi.Services.ToDoCollection;
@@ -18,10 +21,13 @@ namespace ToDoListWebApi.Controllers
             _toDoService = toDoService;
         }
 
+        [Authorize]
         [HttpGet]
-        public async Task<IReadOnlyCollection<ToDo>> GetToDo([FromQuery]ToDoFilter filter)
+        public async Task<IReadOnlyCollection<ToDo>> GetToDo(bool isCompleted)
         {
-            return await _toDoService.GetToDo(filter).ConfigureAwait(false);
+            User user = (User)HttpContext.Items["User"];
+
+            return await _toDoService.GetToDo(new ToDoFilter().SetCompletedStatus(isCompleted).SetUserIds(user.Id)).ConfigureAwait(false);
         }
 
         [HttpGet("{id}")]
@@ -37,14 +43,19 @@ namespace ToDoListWebApi.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<ToDo>> CreateToDo(ToDo toDo)
         {
+            User user = (User)HttpContext.Items["User"];
+            toDo.User = user;
+
             await _toDoService.CreateToDo(toDo).ConfigureAwait(false);
 
             return CreatedAtAction(nameof(GetToDo), new { id = toDo.Id }, toDo);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<ToDo>> DeleteToDo(int id)
         {
@@ -56,6 +67,7 @@ namespace ToDoListWebApi.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpPatch]
         public async Task<ActionResult<ToDo>> UpdateToDo(ToDo todo)
         {

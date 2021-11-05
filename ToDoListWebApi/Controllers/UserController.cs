@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using ToDoListWebApi.Auth;
 using ToDoListWebApi.Models.Users;
 using ToDoListWebApi.Services.Users;
 
@@ -41,15 +40,6 @@ namespace ToDoListWebApi.Controllers
             }
 
             return Ok(response);
-        }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = _userService.GetAll();
-
-            return Ok(users);
         }
     }
 }

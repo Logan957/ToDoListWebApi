@@ -55,11 +55,6 @@ namespace ToDoListWebApi.Services.Users
             return response;
         }
 
-        public IEnumerable<User> GetAll()
-        {
-            return _userRepository.GetAll();
-        }
-
         public User GetById(int id)
         {
             return _userRepository.GetById(id);

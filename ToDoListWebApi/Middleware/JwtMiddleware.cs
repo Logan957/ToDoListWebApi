@@ -52,6 +52,7 @@ namespace ToDoListWebApi.Middleware
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
                 context.Items["User"] = userService.GetById(userId);
+
             }
             catch
             {

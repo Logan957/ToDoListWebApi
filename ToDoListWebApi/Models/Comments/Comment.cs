@@ -1,4 +1,5 @@
-﻿using ToDoListWebApi.DataBase.Models.Users;
+﻿using System.Text.Json.Serialization;
+using ToDoListWebApi.DataBase.Models.Users;
 using ToDoListWebApi.Models.ToDoCollection;
 
 namespace ToDoListWebApi.Models.Comments
@@ -17,11 +18,13 @@ namespace ToDoListWebApi.Models.Comments
         /// </summary>
         public int? ToDoId { get; set; }
 
+        [JsonIgnore]
         /// <summary>
         /// Пользователь - автор комментария
         /// </summary>
         public User User { get; set; }
 
+        [JsonIgnore]
         public ToDo ToDo { get; set; }
 
         /// <summary>
